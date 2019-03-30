@@ -59,8 +59,6 @@ abstract class DoctrineTestCase extends TestCase
         );
         $schemaTool->dropSchema($classes);
         $schemaTool->createSchema($classes);
-        // clear the in memory cache of objects so we can have isolated tests
-        $this->em->clear();
     }
 
     private function getEntityDir(): string
