@@ -11,7 +11,7 @@ abstract class DoctrineTestCase extends TestCase
     /** @var EntityManager */
     protected $em;
 
-    private static $dbConfig = [
+    private $dbConfig = [
         'mysql' => [
             'driver' => 'pdo_mysql',
             'host' => 'localhost',
@@ -25,7 +25,7 @@ abstract class DoctrineTestCase extends TestCase
     protected function setUp(): void
     {
         $this->em = EntityManager::create(
-            self::$dbConfig['mysql'],
+            $this->dbConfig['mysql'],
             $this->configure($this->getEntityDir())
         );
 
