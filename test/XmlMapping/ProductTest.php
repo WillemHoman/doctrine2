@@ -3,6 +3,8 @@
 namespace XmlMapping;
 
 use Doctrine\ORM\Configuration;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 use Doctrine\ORM\Tools\Setup;
 use DoctrineTestCase;
 
@@ -24,6 +26,10 @@ class ProductTest extends DoctrineTestCase
     }
 
 
+    /**
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
     public function testCreate(): void
     {
         $product = new Product('xml', 'XYZ-123');

@@ -14,10 +14,10 @@ abstract class DoctrineTestCase extends TestCase
     private $dbConfig = [
         'mysql' => [
             'driver' => 'pdo_mysql',
-            'host' => 'localhost',
+            'host' => 'mysql.store.bcdev',
             'dbname' => 'doctrine',
             'user' => 'root',
-            'password' => 'root',
+            'password' => 'magic',
             'charset' => 'utf8mb4',
         ],
     ];
