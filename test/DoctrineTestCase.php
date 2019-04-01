@@ -11,21 +11,17 @@ abstract class DoctrineTestCase extends TestCase
     /** @var EntityManager */
     protected $em;
 
-    private $dbConfig = [
-        'mysql' => [
-            'driver' => 'pdo_mysql',
-            'host' => 'mysql.store.bcdev',
-            'dbname' => 'doctrine',
-            'user' => 'root',
-            'password' => 'magic',
-            'charset' => 'utf8mb4',
-        ],
-    ];
-
     protected function setUp(): void
     {
         $this->em = EntityManager::create(
-            $this->dbConfig['mysql'],
+            [
+                'driver' => 'pdo_mysql',
+                'host' => getenv('HOST'),
+                'dbname' => getenv('SCHEMA'),
+                'user' => getenv('USERNAME'),
+                'password' => getenv('PASSWORD'),
+                'charset' => 'utf8mb4',
+            ],
             $this->configure($this->getEntityDir())
         );
 
