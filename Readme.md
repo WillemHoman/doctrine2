@@ -10,8 +10,9 @@
 
 
 # Topics
-
+- 
 - pdo/dbal/doctrine
+- deserialisation
 - annotation vs xml drivers
 - entity manager
 - create/drop schema
