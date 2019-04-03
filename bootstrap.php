@@ -3,7 +3,6 @@
 use Doctrine\ORM\EntityManager;
 
 Dotenv\Dotenv::create(__DIR__)->load();
-require_once 'vendor/autoload.php';
 
 function createEntityManager($config): EntityManager{
     return EntityManager::create(

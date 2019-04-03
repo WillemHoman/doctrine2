@@ -9,7 +9,7 @@ require_once 'bootstrap.php';
 // replace with mechanism to retrieve EntityManager in your app
 $entityManager = createEntityManager(
     Setup::createAnnotationMetadataConfiguration(
-        ['test'],
+        ['test/HelloWorld'],
         true,
         null,
         null,
