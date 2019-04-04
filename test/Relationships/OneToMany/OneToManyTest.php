@@ -51,6 +51,14 @@ class OneToManyTest extends \DoctrineTestCase
         $order = $orderRepository->find(1);
         $this->assertEquals('joe@acme.com', $order->getCustomerEmail());
     }
+
+    public function testAutoRepository(): void
+    {
+        $this->em->clear();
+        $lineItemRepository = $this->em->getRepository(LineItem::class);
+        $lineItems = $lineItemRepository->findAll();
+        $this->assertCount(4, $lineItems);
+    }
     
     public function testFindBy(): void
     {
