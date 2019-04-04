@@ -7,29 +7,40 @@ namespace Relationships\OneToMany;
  */
 class OneToManyTest extends \DoctrineTestCase
 {
-
-    /** @var Person */
-    private $rider1;
-
-    /** @var Person */
-    private $rider2;
-
     protected function setup(): void
     {
         parent::setUp();
-        $this->rider1 = new Person("Willem");
-        $norco = new Bike('Norco', $this->rider1);
-        $this->rider1->addBike($norco);
-        $heckler = new Bike('Heckler', $this->rider1);
-        $this->rider1->addBike($heckler);
-        $this->em->persist($this->rider1);
 
-        $this->rider2 = new Person("Joe");
-        $specialized = new Bike('Specialized',$this->rider2 );
-        $this->rider2->addBike($specialized);
-        $bianchi = new Bike('Bianchi', $this->rider2);
-        $this->rider2->addBike($bianchi);
-        $this->em->persist($this->rider2);
+        $order1 = new Order(
+            'joe@acme.com'
+        );
+        $order1->addLineItem(
+        'Hat',
+            4,
+            '27.45'
+        );
+        $order1->addLineItem(
+        'Shoes',
+            1,
+            '10.45'
+        );
+        $this->em->persist($order1);
+
+        $order2 = new Order(
+            'jenny@acme.com'
+        );
+        $order2->addLineItem(
+        'Football',
+            1,
+            '40.00'
+        );
+        $order2->addLineItem(
+        'Sunglasses',
+            2,
+            '27.90'
+        );
+        $this->em->persist($order2);
+
         $this->em->flush();
         $this->em->clear();
     }
@@ -37,25 +48,16 @@ class OneToManyTest extends \DoctrineTestCase
     public function testFind(): void
     {
         $this->em->clear();
-        $personRepository = $this->em->getRepository(Person::class);
-        $rider = $personRepository->find($this->rider1->getId());
-        $this->assertEquals($this->rider1->getName(), $rider->getName());
+        $orderRepository = $this->em->getRepository(Order::class);
+        $order = $orderRepository->find(1);
+        $this->assertEquals('joe@acme.com', $order->getCustomerEmail());
     }
     
     public function testFindBy(): void
     {
         $this->em->clear();
-        $riderRepository = $this->em->getRepository(Person::class);
-        $rider = $riderRepository->findOneBy(['name'=>'Willem']);
-        $this->assertEquals($this->rider1->getName(), $rider->getName());
-    }
-    
-
-    private function assertBikes(array $expectedBikes, Person $person)
-    {
-        $bikes = $person->getBikes()->map(static function(Bike $bike){
-            return $bike->getName();
-        });
-        $this->assertEquals($expectedBikes, $bikes->toArray());
+        $orderRepository = $this->em->getRepository(Order::class);
+        $order = $orderRepository->findOneBy(['customerEmail'=>'joe@acme.com']);
+        $this->assertEquals(1, $order->getId());
     }
 }
