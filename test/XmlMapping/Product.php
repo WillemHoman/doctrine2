@@ -1,6 +1,7 @@
 <?php
 
 namespace XmlMapping;
+
 class Product
 {
     /** @var int */

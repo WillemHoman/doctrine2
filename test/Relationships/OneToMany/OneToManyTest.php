@@ -46,7 +46,6 @@ class OneToManyTest extends \DoctrineTestCase
 
     public function testFind(): void
     {
-        $this->em->clear();
         $orderRepository = $this->em->getRepository(Order::class);
         $order = $orderRepository->find(1);
         $this->assertEquals('joe@acme.com', $order->getCustomerEmail());
@@ -54,7 +53,6 @@ class OneToManyTest extends \DoctrineTestCase
 
     public function testAutoRepository(): void
     {
-        $this->em->clear();
         $lineItemRepository = $this->em->getRepository(LineItem::class);
         $lineItems = $lineItemRepository->findAll();
         $this->assertCount(4, $lineItems);
@@ -62,7 +60,6 @@ class OneToManyTest extends \DoctrineTestCase
     
     public function testFindBy(): void
     {
-        $this->em->clear();
         $orderRepository = $this->em->getRepository(Order::class);
         $order = $orderRepository->findOneBy(['customerEmail'=>'joe@acme.com']);
         $this->assertEquals(1, $order->getId());

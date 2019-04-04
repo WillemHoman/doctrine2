@@ -11,12 +11,11 @@ class ProductTest extends DoctrineTestCase
 {
     public function testCreate(): void
     {
-        $name = 'asdf';
-        $product = new Product($name, 'php');
+        $product = new Product('asdf', 'php');
 
         $this->em->persist($product);
         $this->em->flush();
 
-        $this->assertEquals($product->getName(), $name);
+        $this->assertEquals($product->getName(), 'asdf');
     }
 }

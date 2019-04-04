@@ -8,7 +8,9 @@ use Doctrine\ORM\Mapping\UnderscoreNamingStrategy;
 Dotenv\Dotenv::create(__DIR__)->load();
 
 function createEntityManager(Configuration $config): EntityManager{
+
     $config->setNamingStrategy(new UnderscoreNamingStrategy);
+
     Type::overrideType('datetime', UTCDateTimeType::class);
 
     return EntityManager::create(
