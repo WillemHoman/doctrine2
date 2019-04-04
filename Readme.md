@@ -1,6 +1,7 @@
 ## Install
 1. composer install
 2. Copy env.sample to .env and update env vars
+3. run create-db.sql to create your test db
 
 
 # Topics
