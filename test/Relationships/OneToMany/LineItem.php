@@ -36,12 +36,9 @@ class LineItem
      */
     private $amount;
 
-
-
-
     /**
      * @var Order
-     * @ORM\ManyToOne(targetEntity="Order", inversedBy="order", cascade={"persist"} )
+     * @ORM\ManyToOne(targetEntity="Order", inversedBy="lineItems", cascade={"persist"} )
      */
     private $order;
 
