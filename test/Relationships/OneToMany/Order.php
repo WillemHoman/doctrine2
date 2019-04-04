@@ -34,8 +34,8 @@ class Order
     private $customerEmail;
 
     /**
-     * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="LineItem", mappedBy="order", cascade={"all"}, orphanRemoval=true)
+     * @var Collection|LineItem[]
+     * @ORM\OneToMany(targetEntity="LineItem", mappedBy="order", cascade={"all"})
      */
     private $lineItems;
 
@@ -66,11 +66,9 @@ class Order
         $this->lineItems->add($lineItem);
     }
 
-    public function removeLineItem(LineItem $lineItem): void
-    {
-        $this->lineItems->removeElement($lineItem);
-    }
-
+    /**
+     * @return LineItem[]|Collection
+     */
     public function getLineItems(): Collection
     {
         return $this->lineItems;

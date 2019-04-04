@@ -1,7 +1,6 @@
 <?php
 namespace Relationships\OneToMany;
 
-
 /**
  * \@backupGlobals disabled
  */
@@ -59,5 +58,26 @@ class OneToManyTest extends \DoctrineTestCase
         $orderRepository = $this->em->getRepository(Order::class);
         $order = $orderRepository->findOneBy(['customerEmail'=>'joe@acme.com']);
         $this->assertEquals(1, $order->getId());
+
+        /** @var LineItem $lineItem */
+        foreach ( $order->getLineItems() as $lineItem){
+            $this->assertNotEmpty($lineItem->getProductName());
+        }
     }
+
+    public function testDQL(): void
+    {
+
+        $query = $this->em->createQuery('
+          SELECT
+            o, li
+          FROM
+            ' . Order::class . ' o
+          JOIN o.lineItems li
+        ');
+
+        $orders = $query->getResult();
+        $this->assertCount(2,  $orders);
+    }
+
 }
