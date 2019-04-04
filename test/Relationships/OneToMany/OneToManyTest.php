@@ -67,16 +67,7 @@ class OneToManyTest extends \DoctrineTestCase
 
     public function testDQL(): void
     {
-
-        $query = $this->em->createQuery('
-          SELECT
-            o, li
-          FROM
-            ' . Order::class . ' o
-          JOIN o.lineItems li
-        ');
-
-        $orders = $query->getResult();
+        $orders = $this->em->getRepository(Order::class)->dqlFindAll();
         $this->assertCount(2,  $orders);
     }
 
