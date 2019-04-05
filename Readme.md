@@ -19,4 +19,13 @@
 - ddd
 - utf8
 - querybuilder - composition
-- partials
+- partials vs proxies
+
+
+SHOW VARIABLES LIKE "%general_log%";
+root@work:/etc/mysql# cat conf.d/mysql.cnf
+[mysql]
+
+[mysqld]
+general_log_file = /var/log/mysql/general.log
+general_log      = 1

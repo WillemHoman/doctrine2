@@ -1,10 +1,12 @@
 <?php
-namespace Relationships\OneToMany;
+namespace Relationships\OneToMany\UniDirectional;
+
+use DoctrineTestCase;
 
 /**
  * \@backupGlobals disabled
  */
-class OneToManyTest extends \DoctrineTestCase
+class OneToManyTest extends DoctrineTestCase
 {
     protected function setup(): void
     {

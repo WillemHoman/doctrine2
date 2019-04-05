@@ -25,14 +25,13 @@ abstract class DoctrineTestCase extends TestCase
      */
     protected function configure(string $entityDir): Configuration
     {
-        $config = Setup::createAnnotationMetadataConfiguration(
+        return Setup::createAnnotationMetadataConfiguration(
             [$entityDir],
             true,
             null,
             null,
             false
         );
-        return $config;
     }
 
     private function dropAndCreateSchema(): void

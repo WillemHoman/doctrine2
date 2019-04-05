@@ -1,6 +1,6 @@
 <?php
 
-namespace Relationships\OneToMany;
+namespace Relationships\OneToMany\BiDirectional;
 
 use Doctrine\ORM\EntityRepository;
 

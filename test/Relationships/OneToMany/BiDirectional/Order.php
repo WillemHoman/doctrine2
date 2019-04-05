@@ -1,6 +1,6 @@
 <?php
 
-namespace Relationships\OneToMany;
+namespace Relationships\OneToMany\BiDirectional;
 
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="\Relationships\OneToMany\OrderRepository")
+ * @ORM\Entity(repositoryClass="\Relationships\OneToMany\BiDirectional\OrderRepository")
  * @ORM\Table(name="orders")
  **/
 class Order
@@ -40,7 +40,7 @@ class Order
     private $lineItems;
 
 
-    function __construct(
+    public function __construct(
         string $customerEmail
     ) {
         $this->createdDate = new \DateTime;
