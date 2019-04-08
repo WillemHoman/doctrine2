@@ -6,6 +6,6 @@
         "litipk/php-bignumbers": "^0.8.6"
     },
     "autoload": {
-        "psr-0": {"": "test/"}
+        "psr-0": {"": "src/"}
     }
 }
