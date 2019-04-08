@@ -3,7 +3,7 @@ This is a sandbox environment to facilitate learning Doctrine 2.
 
 It uses PHPUnit to run unit tests against the database - something you wouldn't do in a production setting but handy for taking Doctrine for a spin.
 
-Each tests run in isolation. The setup for each test scans the directory of the running test to find the Doctrine entities and then drops and creates them in the database.
+Each tests run in isolation. The setup for each test scans the directory of the running test to find the Doctrine entities and then drops and creates the corresponding tables in the database.
 
 There is a `cli-config` which the `doctrine`  command line utility requires.
 
@@ -11,8 +11,8 @@ There is a `cli-config` which the `doctrine`  command line utility requires.
 To get going: 
 
 1. `composer install`
-2. Copy `env.sample` to `.env` and update env vars
-3. connect to your mysql instance using your preferred mysql clinet and run `create-db.sql` to create your test db 
+3. connect to your mysql instance using your preferred mysql client and run `create-db.sql` to create your test db 
+2. Copy `env.sample` to `.env` and update env vars. You will almost certainly need to update both `HOST` and `PASSWORD`.
 4. `source .env` 
 5. `phpunit --bootstrap ./bootstrap.php src/HelloWorld`
 
@@ -20,7 +20,7 @@ To get going:
 ## Optional
 Enable the the general log file so you can see the actual sql being run against the database.
 
-Beware of enabling the general if your doctrine database is on the same mysql server as another database which runs a lot of queries. Your log file will grow very large, very quickly.
+Beware of enabling the  log if your doctrine database shares the mysql server with another database which runs a lot of queries (xC-APP cough cough). Your log file will grow very large, very quickly.
 
 
 Update `/etc/mysql/conf.d/mysql.cnf` and add the following `mysqld` section
