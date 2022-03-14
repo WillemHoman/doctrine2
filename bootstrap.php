@@ -12,6 +12,7 @@ function createEntityManager(Configuration $config): EntityManager{
     $config->setNamingStrategy(new UnderscoreNamingStrategy);
 
     Type::overrideType('datetime', UTCDateTimeType::class);
+    Type::addType('pickup_status', PickupStatusType::class);
 
     return EntityManager::create(
         [

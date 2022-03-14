@@ -11,7 +11,7 @@ class ProductTest extends DoctrineTestCase
 {
     public function testCreate(): void
     {
-        $product = new Product('asdf', 'php');
+        $product = new Product('asdf', 'php', \PickupStatus::COLLECTED());
 
         $this->em->persist($product);
         $this->em->flush();
